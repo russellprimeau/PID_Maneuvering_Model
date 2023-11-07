@@ -51,15 +51,15 @@ plt.savefig('ProjectTaskA_Thrust.png')
 
 # Read data in from CSV file and write to a dataframe.
 curves = pd.read_csv('LDdata.csv', sep=',', header=0)
-print(curves.Lift.to_string)
+# print(curves.Lift.to_string)
 
 # Use Numpy's least squares function to find polynomials
 f_L = np.polyfit(curves.x, curves.Lift, 5)
 f_D = np.polyfit(curves.x, curves.Drag, 5)
 
 # Test that function returns correct output
-print("Lift =", Thrust(k_p, k_n, 100) * np.polyval(f_L, 0))
-print("Thrust-Drag =", Thrust(k_p, k_n, 100) * np.polyval(f_D, 0))
+# print("Lift =", Thrust(k_p, k_n, 100) * np.polyval(f_L, 0))
+# print("Thrust-Drag =", Thrust(k_p, k_n, 100) * np.polyval(f_D, 0))
 
 # Calculate a correction term for the lift coefficient function, so that there is no lift force at delta = 0
 lift_correct = -np.polyval(f_L, 0)
@@ -176,7 +176,8 @@ def get_dot_state(A_s, X_s, omega_s, delta_s, M_inv_s, env_s):
 omega_E = 100  # RPM
 dt = .1  # Time step, s
 time = np.arange(0, 1000, dt)  # Time range, s
-X_sol = np.zeros((6, len(time)))  # Declare vector of state variables and initialize with values from the problem statement
+X_sol = np.zeros((6, len(time)))  # Declare vector of state variables and initialize with values
+                                    # from the problem statement
 X_dot = np.zeros((6, len(time)))  # Declare vector of derivatives of state variables, to be computed
 F_vec = np.zeros((3, len(time)))  # Declare vector of ship forces for debugging
 
@@ -296,7 +297,8 @@ plt.savefig('ProjectTaskE_forces.png')
 omega_F = 100  # RPM
 dt_F = .1  # Time step, s
 time_F = np.arange(0, 500, dt_F)  # Time range, s
-X_solF = np.zeros((6, len(time_F)))  # Declare vector of state variables and initialize with values from the problem statement
+X_solF = np.zeros((6, len(time_F)))  # Declare vector of state variables and initialize with values
+                                        # from the problem statement
 X_dotF = np.zeros((6, len(time_F)))  # Declare vector of derivatives of state variables, to be computed
 F_vecF = np.zeros((3, len(time_F)))  # Declare vector of ship forces for debugging
 delta_F = np.zeros((len(time_F)))  # Declare vector for saving out the rudder angles, for tuning parameters
@@ -421,7 +423,7 @@ axsF4[1].plot(time_F, K_D * Err_der, label='Gain * Error (Derivative)')
 axsF4[1].plot(time_F, delta_F, label='Rudder Command')
 axsF4[1].set_xlabel('time, s')
 axsF4[1].set_ylabel('error signal, degrees')
-axsF4[1].set_ylim(-90,90)
+axsF4[1].set_ylim(-90, 90)
 axsF4[1].legend(loc='lower right')
 axsF4[1].grid(True)
 figF4.set_figwidth(8)
